@@ -1,5 +1,7 @@
 package com.classyex.github.junitdemo.service;
 
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.classyex.github.junitdemo.base.BaseServiceTest;
 import com.classyex.github.junitdemo.entity.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -13,9 +15,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
  * @version 1.0 <br>
  * @date 2020/6/12 17:15 <br>
  */
-@ExtendWith(SpringExtension.class)
-@SpringBootTest
-public class UserServiceTest {
+public class UserServiceTest extends BaseServiceTest {
 
     @Autowired
     private UserService userService;
@@ -23,16 +23,44 @@ public class UserServiceTest {
     @Test
     public void should_get_user_by_id() {
         User oneUser = userService.getById(1);
-        assertUser(oneUser, 1, 18, "Jone", "test1@baomidou.com");
+        Assertions.assertEquals("Jone", oneUser.getName());
         User another = userService.getById(2);
-        assertUser(another, 2, 20, "Jack", "test2@baomidou.com");
+        Assertions.assertEquals("Jack", another.getName());
     }
 
-    private void assertUser(User byId, int id, int age, String name, String email) {
-        Assertions.assertEquals(id, byId.getId());
-        Assertions.assertEquals(age, byId.getAge());
-        Assertions.assertEquals(name, byId.getName());
-        Assertions.assertEquals(email, byId.getEmail());
+    @Test
+    public void should_add_a_user() {
+        User user = new User();
+        String name = "zhangs";
+        user.setName(name);
+        boolean save = userService.save(user);
+        Assertions.assertTrue(save);
+        User one = userService.getOne(Wrappers.lambdaQuery(User.class).eq(User::getName, name));
+        Assertions.assertEquals(name, one.getName());
     }
+
+    @Test
+    public void should_modifer_user_by_id() {
+        User user = new User();
+        long id = 1L;
+        user.setId(id);
+        String name = "zhangs";
+        user.setName(name);
+        boolean update = userService.updateById(user);
+        Assertions.assertTrue(update);
+        User byId = userService.getById(id);
+        Assertions.assertEquals(name, byId.getName());
+    }
+
+    @Test
+    public void should_delete_user_by_id() {
+        long id = 1L;
+        boolean remove = userService.removeById(id);
+        Assertions.assertTrue(remove);
+        User byId = userService.getById(id);
+        Assertions.assertNull(byId);
+    }
+
+
 
 }
