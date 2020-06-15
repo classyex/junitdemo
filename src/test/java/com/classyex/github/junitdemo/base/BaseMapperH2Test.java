@@ -4,8 +4,10 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author yex <br>
@@ -16,6 +18,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 //@MybatisTest
 @SpringBootTest
 @ActiveProfiles("dev")
+@Transactional
+@Rollback
 @Disabled
 public class BaseMapperH2Test {
 }

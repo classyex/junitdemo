@@ -2,10 +2,7 @@ package com.classyex.github.junitdemo.controller;
 
 import com.classyex.github.junitdemo.base.BaseControllerH2Test;
 import com.classyex.github.junitdemo.entity.User;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
