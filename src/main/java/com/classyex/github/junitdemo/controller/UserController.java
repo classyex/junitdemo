@@ -2,6 +2,7 @@ package com.classyex.github.junitdemo.controller;
 
 
 import com.classyex.github.junitdemo.entity.User;
+import com.classyex.github.junitdemo.service.UserRankService;
 import com.classyex.github.junitdemo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private UserRankService userRankService;
 
     @GetMapping("/{id}")
     public Result<User> getById(@PathVariable Long id) {
@@ -47,6 +50,11 @@ public class UserController {
     @GetMapping
     public Result<List<User>> list(String keyword) {
         return Result.ok(userService.listByKeyword(keyword));
+    }
+
+    @GetMapping("/age-rank")
+    public Result<Integer> ageRank(Long id) {
+        return Result.ok(userRankService.getUserAgeRank(id));
     }
 
 }
