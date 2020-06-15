@@ -21,4 +21,10 @@ public class UserRankServiceTest extends BaseServiceTest {
         Assertions.assertEquals(5, rank);
     }
 
+    @Test
+    public void should_get_max_rank_when_user_not_exist() {
+        int userAgeRank = userRankService.getUserAgeRank(100L);
+        Assertions.assertEquals(Integer.MAX_VALUE, userAgeRank);
+    }
+
 }

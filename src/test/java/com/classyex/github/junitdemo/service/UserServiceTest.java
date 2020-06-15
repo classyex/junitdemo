@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.List;
+
 /**
  * @author yex <br>
  * @version 1.0 <br>
@@ -61,6 +63,17 @@ public class UserServiceTest extends BaseServiceTest {
         Assertions.assertNull(byId);
     }
 
+    @Test
+    public void should_list_by_keyword_use_mail() {
+        List<User> list = userService.listByKeyword("@");
+        Assertions.assertEquals(5, list.size());
+    }
+
+    @Test
+    public void should_list_by_keyword_use_name() {
+        List<User> list = userService.listByKeyword("J");
+        Assertions.assertEquals(2, list.size());
+    }
 
 
 }
