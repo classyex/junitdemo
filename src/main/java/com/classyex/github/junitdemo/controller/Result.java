@@ -6,18 +6,23 @@ import lombok.NoArgsConstructor;
 
 /**
  * Result.java <br>
+ *
+ * @author yex <br>
  * @version 1.0 <br>
  * @date 2020/6/15 10:11 <br>
- * @author yex <br>
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Result<T> {
 
-    /** 成功状态码 */
+    /**
+     * 成功状态码
+     */
     public static int SUCCESS_CODE = 0;
-    /** 成功消息提示 */
+    /**
+     * 成功消息提示
+     */
     public static String SUCCESS_MSG = "OK";
 
     private int code;

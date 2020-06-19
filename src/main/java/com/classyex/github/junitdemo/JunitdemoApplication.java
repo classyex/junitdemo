@@ -11,7 +11,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author yex <br>
  */
 @SpringBootApplication
-@MapperScan(basePackages = {"com.classyex.github.junitdemo.mapper", "com.classyex.github.junitdemo.dao"})
+@MapperScan(basePackages = {"com.classyex.github.junitdemo.mapper",
+        "com.classyex.github.junitdemo.dao"})
 public class JunitdemoApplication {
 
     public static void main(String[] args) {

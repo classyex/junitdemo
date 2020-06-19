@@ -20,7 +20,7 @@ public interface UserService extends IService<User> {
      * @author yex <br>
      *
      * @param keyword 用户名称或者邮箱地址，模糊匹配
-     * @return java.util.List<com.classyex.github.junitdemo.entity.User>
+     * @return java.util.List&lt;com.classyex.github.junitdemo.entity.User&gt;
      */
     List<User> listByKeyword(String keyword);
 }
